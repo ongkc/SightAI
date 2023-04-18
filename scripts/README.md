@@ -7,13 +7,14 @@
 ```
 ### Command Line to run the script
 
-#### Predefined Argument:
+#### Required Argument:
+Please update the username and password accordingly
 ```
-python3 generate-signature.py 
+python3 generate-signature.py --username "username" --password "password"
 ```
-#### User Defined Arguments:
+#### Optional Arguments:
 ```
-Options: --username, --password, --signin-url, --generate-signature-url, --image-path
+Options: --signin-url, --generate-signature-url, --image-path
 
 Example:
 python3 generate-signature.py --username user1 --password password1 --signin-url signin --generate-signature-url generature-signature-url --image-path image.png

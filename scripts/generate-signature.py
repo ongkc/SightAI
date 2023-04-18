@@ -15,6 +15,7 @@ console_handler.setLevel(logging.INFO)
 
 logging.getLogger().addHandler(console_handler)
 
+
 def generate_token(password, username, signin_url):
 
     payload = {
@@ -31,6 +32,7 @@ def generate_token(password, username, signin_url):
     
     token = response.json()["token"]
     return token
+
 
 def generate_signature(token, image_path, generate_signature_url):
 
@@ -56,11 +58,12 @@ def generate_signature(token, image_path, generate_signature_url):
     signature = response.json()['signature']
     return signature
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="My script")
     
-    parser.add_argument("--username", type=str, default="sa-user", help="signin password", required=False)
-    parser.add_argument("--password", type=str, default="UYbLmpxq8aQ9", help="signin username", required=False)
+    parser.add_argument("--username", type=str, default=None, help="signin username", required=True)
+    parser.add_argument("--password", type=str, default=None, help="signin password", required=True)
     parser.add_argument("--signin-url", type=str, default="http://13.67.71.103:10989/signin", help="signin url", required=False)
     parser.add_argument("--generate-signature-url", type=str, default="http://13.67.71.103:10989/generate-signature", help="generate signature url", required=False)
     parser.add_argument("--image-path", type=str, default='download.png', help="file path to the image", required=False)
