@@ -10,7 +10,7 @@
 #### Required Argument:
 Please update the username and password accordingly
 ```
-python3 generate-signature.py --username "username" --password "password"
+python3 generate-signature.py --username sa-user --password UYbLmpxq8aQ9
 ```
 #### Optional Arguments:
 ```
