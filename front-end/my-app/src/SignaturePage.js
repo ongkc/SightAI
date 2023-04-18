@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies  from 'js-cookie';
 import './signature-page-container.css';
 
-function SignaturePage() {
+function SignaturePage({onLogout} ) {
   const API = 'http://13.67.71.103:10989';
   const [image, setImage] = useState(null);
   const [uploadError, setUploadError] = useState(null);
@@ -47,6 +47,8 @@ function SignaturePage() {
 
   const handleLogout = () => {
     // perform logout operation here
+    Cookies.remove('token');
+    onLogout()
     navigate('/login');
   };
 

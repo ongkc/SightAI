@@ -4,11 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import "./login-page-container.css"
 
-function LoginPage() {
+function LoginPage({ onLogin}) {
   const API = 'http://13.67.71.103:10989'
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginError, setLoginError] = useState(null);
   const [serverError, setServerError] = useState(null);
   const navigate = useNavigate();
@@ -32,8 +31,9 @@ function LoginPage() {
     } })
     .then((response) => {
         const token = response.data.token
-        setIsLoggedIn(true);
-        Cookies.set('token', token); // set token as a cookie
+        const expires = new Date(Date.now() + 60 * 60 * 1000);
+        onLogin();
+        Cookies.set('token', token, { expires }); // set token as a cookie
         navigate('/signature');
       })
       .catch((error) => {
@@ -48,10 +48,6 @@ function LoginPage() {
         console.error(error);
       });
   };
-  
-  // const navigate = useNavigate();
-  // if (isLoggedIn) {
-  //   navigate('/signature');  }
 
   return (
     <div className='login-page-container'>
